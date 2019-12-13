@@ -36,7 +36,7 @@ void Rectangle::setHeight(float heightIn) {
 }
 
 void Rectangle::render() {
-	cout << "Rectangle: " << "\nwidth: " << getWidth() << "\nheight: " << getHeight() << "posetion: " << Shape::getPoint().toString() << endl;
+	cout << "Rectangle: " << "\nwidth: " << getWidth() << "\nheight: " << getHeight() << "\nposetion: " << Shape::getPoint().toString() << endl;
 }
 Rectangle::~Rectangle()
 {
