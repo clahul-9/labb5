@@ -1,6 +1,6 @@
 #pragma once
-//#include"Shape.h"
-//#include "Point2d.h"
+#include"Shape.h"
+#include "Point2d.h"
 class Rectangle :public Shape
 {
 	float width, height;
@@ -13,6 +13,8 @@ public:
 	//height
 	float getHeight();
 	void setHeight(float heightIn);
+
+	void render();
 	~Rectangle();
 };
 
