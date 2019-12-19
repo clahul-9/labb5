@@ -25,7 +25,8 @@ int main(int argc, char* args[]) {
 	//	int rgb[4];
 	//	for (int j = 0; j < 3; j++)
 	//	{
-	//		rgb[j] = rand() % 255 + 0;
+	//		rgb[j] = rand() % 255 + 0
+	;
 	//	}
 
 	//	//point

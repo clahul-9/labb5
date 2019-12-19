@@ -12,13 +12,13 @@
 int *getRnd_RGB() {
 	int rgb[4];
 	for (auto e : rgb) {
-		e = rand() % 0 + 254;
+		e = rand() % 254+0;
 	}
 	return rgb;
 }
 Point2d getRnd_point() {
-	float x = rand() % 0 + 640;
-	float y = rand() % 0 + 480;
+	float x = rand() % 640+0;
+	float y = rand() % 480+0;
 	Point2d point(x, y);
 
 	return point;
