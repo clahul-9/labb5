@@ -13,6 +13,12 @@ public:
 	//metods
 	float distance(Point2d &p2);
 	std::string toString();
+	
+	float getX();
+	void setX(float xIn);
+
+	float getY();
+	void setY(float yIn);
 
 	//overloded operators
 	Point2d operator+(const Point2d & o);

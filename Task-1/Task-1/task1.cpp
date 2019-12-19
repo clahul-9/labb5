@@ -57,7 +57,9 @@ int main(int argc, char* args[]) {
 
 	SDL_Window *window=SDL_CreateWindow("title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
 	
-	
+	SDL_Renderer *render = SDL_CreateRenderer(window, -1, 0);
+
+	SDL_RenderDrawLine(render, 10, 10, 50, 50);
 
 	SDL_Delay(3000); 
 	SDL_DestroyWindow(window);

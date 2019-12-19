@@ -29,6 +29,15 @@ std::string Point2d::toString(){
 	std::string r = ("["+std::to_string(x) +","+ std::to_string(y) +"]");
 	return r;
 }
+
+float Point2d::getX() { return x; }
+void Point2d::setX(float xIn){
+	if (xIn > 0) { x = xIn; }
+	else if (xIn < 0) { x = (-1 * xIn); }
+}
+
+float Point2d::getY() { return y; }
+void Point2d::setY(float yIn){}
 //overloded opperation
 Point2d Point2d::operator+(const Point2d & o) {
 	Point2d p;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Point2d.h"
+#include "SDL.h"
 class Shape
 {
 	Point2d point;
@@ -14,7 +15,7 @@ public:
 	int *getRGB();
 	void setRGB(int rgb[4]);
 
-	virtual void render()=0;
+	virtual void render(SDL_Renderer* object)=0;
 	~Shape();
 };
 

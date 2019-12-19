@@ -6,6 +6,8 @@ using namespace std;
 Triangle::Triangle(Point2d point, int rgb[4], float baceIn, float heightIn):
 Shape(point, rgb)
 {
+	cout<< Shape::getRGB()[0]<< Shape::getRGB()[2]<< Shape::getRGB()[3]<< Shape::getRGB()[4]<<endl;
+
 	setBase(baceIn);
 	setHeight(heightIn);
 }
@@ -24,8 +26,14 @@ void Triangle::setHeight(float heightIn) {
 	else if (heightIn < 0) { height = (-1 * heightIn); }
 }
 
-void Triangle::render() {
-	cout << "Triangle: " << "\nbase: " << getBase() << "\nheight: " << getHeight() << "\nposetion: " << Shape::getPoint().toString() << endl;
+void Triangle::render(SDL_Renderer* object) {
+	float x = Shape::getPoint().getX();
+	float y = Shape::getPoint().getY();
+	SDL_SetRenderDrawColor(object, Shape::getRGB()[0], Shape::getRGB()[2], Shape::getRGB()[3], Shape::getRGB()[4]);
+	SDL_RenderDrawLine(object,x,y ,x+this->base,y );
+	SDL_RenderDrawLine(object, x, y, x + (this->base / 2), y - this->height);
+	SDL_RenderDrawLine(object, x + (this->base / 2), y - this->height, x + this->base, y);
+
 }
 Triangle::~Triangle()
 {

@@ -10,7 +10,7 @@ public:
 	float getRadius();
 	void setRadius(float radiusIn);
 
-	void render();
+	void render(SDL_Renderer* object);
 	~Circle();
 };
 

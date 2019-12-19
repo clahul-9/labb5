@@ -14,7 +14,7 @@ public:
 	float getHeight();
 	void setHeight(float heightIn);
 
-	void render();
+	void render(SDL_Renderer* object);
 	~Rectangle();
 };
 
