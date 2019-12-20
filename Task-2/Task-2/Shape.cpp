@@ -19,7 +19,7 @@ void Shape::setRGB(int rgbIn[4]){
 	for (int i = 0; i <= 3; ++i)
 	{
 		//std::cout <<"inann " <<rgbIn[i]<<std::endl;
-		if (rgbIn[i] <= 255 && rgbIn[i] >= 0)
+		if (rgbIn[i] <= 255 && rgbIn[i] > 0)
 		{
 			//std::cout<<"i "<<rgbIn[i]<<std::endl;
 

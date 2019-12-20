@@ -6,13 +6,14 @@
 #include <iostream>
 #include <stdlib.h> 
 #include <vector>
+#include <array>
 
 
 
 int *getRnd_RGB() {
-	int rgb[4];
-	for (auto e : rgb) {
-		e = rand() % 254+0;
+	int *rgb = new int[4];
+	for (int i=0; i<=3;i++) {
+		*(rgb+i) = rand() % 255+1;
 	}
 	return rgb;
 }
@@ -26,58 +27,69 @@ Point2d getRnd_point() {
 
 int main(int argc, char* argv[])
 {
-	float radius = 0;
-	float width=0, height=0,base=0;
+	float width = 0, height = 0, base = 0, radius = 0;
+	int window_width=600, window_height=400;
 	std::vector<Shape*> shapes;
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-		SDL_Window* window = NULL;
-		SDL_Renderer* renderer = NULL;
+	SDL_Init(SDL_INIT_EVERYTHING);
 
-		if (SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer) == 0) {
-			SDL_bool done = SDL_FALSE;
+	SDL_Window* window = NULL;
+	SDL_Renderer* renderer = NULL;
 
-			while (!done) {
-				SDL_Event event;
+	if (SDL_CreateWindowAndRenderer(window_width*2, window_height*2, 0, &window, &renderer) == 0) {
+		SDL_bool done = SDL_FALSE;
 
-				//bakgroun and update window
-				SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-				SDL_RenderClear(renderer);
-				
-				//event
-				while (SDL_PollEvent(&event)) {
-					if (event.type == SDL_QUIT) {
-						done = SDL_TRUE;
-					}
+		while (!done) {
+			SDL_Event event;
 
+			//bakgroun and update window
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+			SDL_RenderClear(renderer);
+			if (shapes.size() > 0)
+			{
+				for (int i = 0; i < shapes.size(); i++)
+				{
+					shapes[i]->render(renderer);
+				}
+
+			}
+			SDL_RenderPresent(renderer);
+
+			//event
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					done = SDL_TRUE;
+				}
+				if (event.type == SDL_KEYUP)
+				{
 					switch (event.key.keysym.sym)
 					{
 					case SDLK_c:
-						radius = rand() % 100;
+						radius = rand() % window_height+0;
 						shapes.push_back(new Circle(getRnd_point(), getRnd_RGB(), radius));
+						break;
 					case SDLK_k:
-						width = rand() % 100, height = rand() % 100;
-						shapes.push_back(new Rectangle (getRnd_point(), getRnd_RGB(), width, height));
+						width = rand() % window_width, height = rand() % window_height+0;
+						shapes.push_back(new Rectangle(getRnd_point(), getRnd_RGB(), width, height));
+						break;
 					case SDLK_t:
-						base = rand() % 100, height = rand() % 100;
-						shapes.push_back(new Triangle (getRnd_point(), getRnd_RGB(), base, height));
+						base = rand() % window_width, height = rand() % window_height + 0;
+						shapes.push_back(new Triangle(getRnd_point(), getRnd_RGB(), base, height));
+						break;
+					case SDLK_x:
+						shapes.clear();
+						SDL_RenderClear(renderer);
+						break;
 					case SDLK_q:
 						done = SDL_TRUE;
+						break;
 					default:
 						break;
 					}
 				}
-				for (int i = 0; i < shapes.size(); i++)
-				{
-					if (shapes.size()!=0)
-					{
-						shapes[i]->render(renderer);
-						SDL_RenderPresent(renderer);
-					}
-					
-				}
-				SDL_RenderPresent(renderer);
 			}
+
 		}
+
 		//cindaa a destructor
 		if (renderer) {
 			SDL_DestroyRenderer(renderer);
